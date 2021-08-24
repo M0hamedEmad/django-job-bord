@@ -5,7 +5,7 @@ from django.views.generic import View, ListView
 from .forms import UserUpdateForm, UserCVForm
 from .models import UserCV
 from job.models import Applies, Job
-
+ 
 class ProfileView(LoginRequiredMixin, View):
     template_name = 'account/profile.html'
     
@@ -13,7 +13,7 @@ class ProfileView(LoginRequiredMixin, View):
         user = self.request.user
         form = UserUpdateForm(instance=user)
 
-        CV_form = UserCVForm(instance=user.cv or None)
+        CV_form = UserCVForm()
         return render(request, self.template_name, {'form':form, 'CV_form':CV_form})
     
     def post(self, request, *args, **kwargs):
