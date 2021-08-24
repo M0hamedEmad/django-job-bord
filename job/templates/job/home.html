@@ -96,7 +96,7 @@
             {% for category in categories|slice:"9" %}
                 <div class="col-lg-4 col-xl-3 col-md-6">
                     <div class="single_catagory">
-                        <a href="{% url 'job:jobs' %}/?categories={{category.id}}"><h4>{{category}}</h4></a>
+                        <a href="{% url 'job:jobs' %}?categories={{category.id}}"><h4>{{category}}</h4></a>
                         <p> <span>50</span> Available position</p>
                     </div>
                 </div>

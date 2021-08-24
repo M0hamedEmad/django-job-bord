@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 from decouple import config
 import dj_database_url 
 
@@ -13,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(config('DEBUG') == True)
+DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,10 +83,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-default_dburl = 'sqlite:///' + BASE_DIR / 'db.sqlite3',
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR,  'db.sqlite3')
 
 DATABASES = {
-    'default': dj_database_url.config('DATABASE_URL', default=default_dburl, cast=dj_database_url.parse)
+    'default': config('DATABASE_URL', default=default_dburl, cast=dj_database_url.parse)
 }
 
 # config
